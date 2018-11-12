@@ -13,11 +13,11 @@ import CoreData
 class RestaurantDataSource {
     
     var favourites: [Int] = []
-    var observableData: [Restaurant] = []
+    var observableData: Restaurants? = nil
     
     init() {
         fetchData()
-        fetchDataFromAPI()
+        try! fetchDataFromAPI()
     }
     
     private func fetchData() {
@@ -44,11 +44,24 @@ class RestaurantDataSource {
         favourites = fav
     }
     
-    private func fetchDataFromAPI() {
-        // get restaurant data
+    func fetchDataFromAPI() throws {
+        
+        try! fetch(url: RestaurantConstants.Url.goodUrl.rawValue) { data in
+            
+            let dataString = String(data: data!, encoding: .utf8)
+            let _data = dataString?.data(using: .utf8)
+            
+            if let data = _data {
+                let decoder = JSONDecoder()
+                let obj = try! decoder.decode(Restaurants.self, from: data)
+                self.observableData = obj
+                //print("On closure \(self.observableData)")
+            }
+        }
     }
-    
-    func fetchObservableData() {
+
+    func fetchObservableData(data: Restaurants) {
         // get stored restaurant data (bound byViewModel)
+        self.observableData = data
     }
 }

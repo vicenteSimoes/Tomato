@@ -9,7 +9,7 @@
 import XCTest
 @testable import Tomato
 
-class RestaurantDataSourceTests: XCTestCase {
+class RestaurantDataSourceToggleFavourite: XCTestCase {
     
     var testData = [12, 35, 44]
     var dataSource = RestaurantDataSource()
@@ -25,7 +25,7 @@ class RestaurantDataSourceTests: XCTestCase {
     }
     
     func testRestaurantDataSourceSuccess() {
-                
+        
         XCTAssertEqual(dataSource.favourites, testData)
     }
     

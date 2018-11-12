@@ -8,20 +8,35 @@
 
 import Foundation
 
-typealias Restaurants = [Restaurant]
+struct Restaurants: Codable {
+    let restaurants: [Restaurant]
+    
+    enum CodingKeys: String, CodingKey {
+        case restaurants
+    }
+}
 
-class Restaurant: Codable {
+struct Restaurant: Codable {
+    
+    let restaurant: RestaurantAttributes
+}
+
+
+struct RestaurantAttributes: Codable {
+    
     let id, name: String
     let url: String
     let location: Location
-    let averageCostForTwo, priceRange, currency: String
+    let averageCostForTwo, priceRange: Int
+    let currency: String
     let thumb, featuredImage: String
     let photosURL, menuURL, eventsURL: String
     let userRating: UserRating
-    let hasOnlineDelivery, isDeliveringNow, hasTableBooking, deeplink: String
-    let cuisines, allReviewsCount, photoCount, phoneNumbers: String
-    let photos: [Photo]
-    let allReviews: [AllReview]
+    let hasOnlineDelivery, isDeliveringNow, hasTableBooking: Int
+    let deeplink: String
+    let cuisines: String
+    let photos: [Photo]?
+    let allReviews: [AllReview]?
     
     enum CodingKeys: String, CodingKey {
         case id, name, url, location
@@ -37,13 +52,12 @@ class Restaurant: Codable {
         case isDeliveringNow = "is_delivering_now"
         case hasTableBooking = "has_table_booking"
         case deeplink, cuisines
-        case allReviewsCount = "all_reviews_count"
-        case photoCount = "photo_count"
-        case phoneNumbers = "phone_numbers"
         case photos
         case allReviews = "all_reviews"
     }
+
 }
+
 
 struct AllReview: Codable {
     let rating, reviewText, id, ratingColor: String
@@ -83,7 +97,8 @@ struct User: Codable {
 
 struct Location: Codable {
     let address, locality, city, latitude: String
-    let longitude, zipcode, countryID: String
+    let longitude, zipcode: String
+    let countryID: Int
     
     enum CodingKeys: String, CodingKey {
         case address, locality, city, latitude, longitude, zipcode
