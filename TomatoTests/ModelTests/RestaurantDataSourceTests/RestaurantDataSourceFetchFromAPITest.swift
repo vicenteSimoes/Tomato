@@ -16,8 +16,17 @@ class RestaurantDataSourceFetchFromAPITest: XCTestCase {
     func testSuccess() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let expect = expectation(description: "wait for fetch")
+        let expect = expectation(description: "wait for multiple restaurants")
         try! fetch(url: RestaurantConstants.Url.goodUrl.rawValue) { data in
+            XCTAssertNotNil(data)
+            expect.fulfill()
+        }
+        wait(for: [expect], timeout: 5)
+    }
+    
+    func testSuccessForASingleRestaurant(){
+        let expect = expectation(description: "wait for single restaurant")
+        try! fetch(url: RestaurantConstants.Url.goodUrlForSingleRestaurant.rawValue + "18610399") { data in
             XCTAssertNotNil(data)
             expect.fulfill()
         }

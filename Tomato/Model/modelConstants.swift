@@ -12,6 +12,7 @@ enum RestaurantConstants {
     enum Url: String {
         // every restaurant for the city of Lisbon
         case goodUrl  = "https://developers.zomato.com/api/v2.1/search?entity_id=82&entity_type=city"
+        case goodUrlForSingleRestaurant = "https://developers.zomato.com/api/v2.1/restaurant?res_id="
         case badUrl   = "Bad url"
         case emptyUrl = "   "
     }

@@ -13,11 +13,12 @@ import CoreData
 class RestaurantDataSource {
     
     var favourites: [Int] = []
-    var observableData: Restaurants? = nil
+    var observableData: Any? = nil
     
+    // initially we only want to fetch the restaurants for the city of lisbon
     init() {
         fetchData()
-        try! fetchDataFromAPI()
+        try! fetchDataFromAPI(multiplicity: true)
     }
     
     private func fetchData() {
@@ -44,18 +45,35 @@ class RestaurantDataSource {
         favourites = fav
     }
     
-    func fetchDataFromAPI() throws {
+    // if there is multiplicity then we are fetching multiple restaurants
+    func fetchDataFromAPI(multiplicity: Bool, withId id: Int? = 0) throws {
         
-        try! fetch(url: RestaurantConstants.Url.goodUrl.rawValue) { data in
+        let url = multiplicity
+            ? RestaurantConstants.Url.goodUrl.rawValue
+            : RestaurantConstants.Url.goodUrlForSingleRestaurant.rawValue + String(id!)
+    
+        try! fetch(url: url) { data in
             
             let dataString = String(data: data!, encoding: .utf8)
             let _data = dataString?.data(using: .utf8)
             
             if let data = _data {
+                
                 let decoder = JSONDecoder()
-                let obj = try! decoder.decode(Restaurants.self, from: data)
-                self.observableData = obj
-                //print("On closure \(self.observableData)")
+                var obj: Any? = nil
+                
+                if multiplicity {
+                    
+                    obj = try! decoder.decode(Restaurants.self, from: data)
+                    self.observableData = obj
+                    self.observableData = self.observableData as! Restaurants
+                }
+                else {
+                    
+                    obj = try! decoder.decode(RestaurantAttributes.self, from: data)
+                    self.observableData = obj
+                    self.observableData = self.observableData as! RestaurantAttributes
+                }
             }
         }
     }
