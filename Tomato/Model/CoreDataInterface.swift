@@ -10,6 +10,11 @@ import Foundation
 import CoreData
 import UIKit
 
+struct SimpleEntity {
+    let entityName: String
+    let key: String
+}
+
 class CoreDataInterface {
     
     static let shared = CoreDataInterface()
@@ -26,16 +31,17 @@ class CoreDataInterface {
     }
     // interact method is the interface the model uses to speak with CoreData
     func interact(withUseCase useCase: InteractionType,
+                  onEntity _entity: SimpleEntity,
                   withId resId: Int? = nil) throws -> [Int]  {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else { throw InteractionError.CoreDataInteractionException }
         
         let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Favourite", in: context)
+        let entity = NSEntityDescription.entity(forEntityName: _entity.entityName, in: context)
         
         // all cases will return a read to update the favourite list
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: _entity.entityName)
         request.returnsObjectsAsFaults = false
         
         switch useCase {
@@ -43,15 +49,15 @@ class CoreDataInterface {
         case .toggleOn:
             
             let newFavourite = NSManagedObject(entity: entity!, insertInto: context)
-            newFavourite.setValue( resId, forKey: "restaurantId")
+            newFavourite.setValue( resId, forKey: _entity.key)
             do { try context.save() } catch { print("Could not save addition to Core Data") }
             
         case .toggleOff:
             
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: _entity.entityName)
             let results: [NSManagedObject] = try context.fetch(request) as! [NSManagedObject]
             results.forEach {
-                if ($0.value(forKey: "restaurantId") as! Int) == resId {
+                if ($0.value(forKey: _entity.key) as! Int) == resId {
                     context.delete($0)
                 }
             }
@@ -61,10 +67,11 @@ class CoreDataInterface {
             break
         }
         
-        return try self.readObjects(fromRequest: request, context: context)
+        return try self.readObjects(fromRequest: request, entity: _entity, context: context)
     }
     
     func readObjects(fromRequest request: NSFetchRequest<NSFetchRequestResult>,
+                     entity: SimpleEntity,
                      context: NSManagedObjectContext) throws -> [Int] {
         
         var results: [NSManagedObject] = []
@@ -75,6 +82,6 @@ class CoreDataInterface {
             print("Failed fetching data from Core Data")
             throw InteractionError.CoreDataInteractionException
         }
-        return results.map { $0.value(forKey: "restaurantId") as! Int }
+        return results.map { $0.value(forKey: entity.key) as! Int }
     }
 }

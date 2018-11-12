@@ -14,6 +14,9 @@ class RestaurantDataSource {
     
     var favourites: [Int] = []
     var observableData: Any? = nil
+    let entity: SimpleEntity
+        = SimpleEntity(entityName: RestaurantConstants.CoreDataEntity.name.rawValue,
+                       key: RestaurantConstants.CoreDataEntity.key.rawValue)
     
     // initially we only want to fetch the restaurants for the city of lisbon
     init() {
@@ -25,7 +28,7 @@ class RestaurantDataSource {
         // get favourites list from core data
         var fav: [Int] = []
         
-        do { fav = try CoreDataInterface.shared.interact(withUseCase: .fetch) }
+        do { fav = try CoreDataInterface.shared.interact(withUseCase: .fetch, onEntity: self.entity) }
         catch { print(error) }
         
         favourites = fav
@@ -39,7 +42,10 @@ class RestaurantDataSource {
             ? .toggleOff
             : .toggleOn
         
-        do { fav = try CoreDataInterface.shared.interact(withUseCase: interaction, withId: restaurantId) }
+        do { fav = try CoreDataInterface.shared.interact(withUseCase: interaction,
+                                                         onEntity: self.entity,
+                                                         withId: restaurantId)
+        }
         catch { print(error) }
         
         favourites = fav
@@ -78,8 +84,10 @@ class RestaurantDataSource {
         }
     }
 
-    func fetchObservableData(data: Restaurants) {
+    func fetchObservableData() -> Any? {
         // get stored restaurant data (bound byViewModel)
-        self.observableData = data
+        guard let data = observableData else { return nil }
+        
+        return data
     }
 }

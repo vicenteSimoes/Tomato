@@ -17,13 +17,14 @@
 		5196CAAA2195A74E004FB671 /* TomatoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CAA92195A74E004FB671 /* TomatoUITests.swift */; };
 		5196CABB2195B5BB004FB671 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CABA2195B5BB004FB671 /* Restaurant.swift */; };
 		5196CABD2195B5CE004FB671 /* RestaurantDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CABC2195B5CE004FB671 /* RestaurantDataSource.swift */; };
-		5196CABF2195C46F004FB671 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CABE2195C46F004FB671 /* City.swift */; };
-		5196CAC12195C515004FB671 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CAC02195C515004FB671 /* Search.swift */; };
+		5196CABF2195C46F004FB671 /* Cuisine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CABE2195C46F004FB671 /* Cuisine.swift */; };
 		5196CAC42195D0C7004FB671 /* RestaurantDataSourceToggleFavourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CAC32195D0C7004FB671 /* RestaurantDataSourceToggleFavourite.swift */; };
 		5196CAC72195D1DD004FB671 /* CoreDataInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CAC62195D1DD004FB671 /* CoreDataInterface.swift */; };
 		5196CACA219988A1004FB671 /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CAC9219988A1004FB671 /* api.swift */; };
 		5196CACC21998FBD004FB671 /* RestaurantDataSourceFetchFromAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CACB21998FBD004FB671 /* RestaurantDataSourceFetchFromAPITest.swift */; };
 		5196CACE2199DBB1004FB671 /* modelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CACD2199DBB1004FB671 /* modelConstants.swift */; };
+		5196CAD02199F6A3004FB671 /* CouisineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CACF2199F6A3004FB671 /* CouisineDataSource.swift */; };
+		5196CAD32199FD0A004FB671 /* CouisineDataSourceToggleFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5196CAD22199FD0A004FB671 /* CouisineDataSourceToggleFilterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,13 +61,14 @@
 		5196CAAB2195A74E004FB671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5196CABA2195B5BB004FB671 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		5196CABC2195B5CE004FB671 /* RestaurantDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDataSource.swift; sourceTree = "<group>"; };
-		5196CABE2195C46F004FB671 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
-		5196CAC02195C515004FB671 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		5196CABE2195C46F004FB671 /* Cuisine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cuisine.swift; sourceTree = "<group>"; };
 		5196CAC32195D0C7004FB671 /* RestaurantDataSourceToggleFavourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDataSourceToggleFavourite.swift; sourceTree = "<group>"; };
 		5196CAC62195D1DD004FB671 /* CoreDataInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInterface.swift; sourceTree = "<group>"; };
 		5196CAC9219988A1004FB671 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
 		5196CACB21998FBD004FB671 /* RestaurantDataSourceFetchFromAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDataSourceFetchFromAPITest.swift; sourceTree = "<group>"; };
 		5196CACD2199DBB1004FB671 /* modelConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modelConstants.swift; sourceTree = "<group>"; };
+		5196CACF2199F6A3004FB671 /* CouisineDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouisineDataSource.swift; sourceTree = "<group>"; };
+		5196CAD22199FD0A004FB671 /* CouisineDataSourceToggleFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouisineDataSourceToggleFilterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,11 +155,11 @@
 			isa = PBXGroup;
 			children = (
 				5196CABA2195B5BB004FB671 /* Restaurant.swift */,
-				5196CABE2195C46F004FB671 /* City.swift */,
+				5196CABE2195C46F004FB671 /* Cuisine.swift */,
 				5196CABC2195B5CE004FB671 /* RestaurantDataSource.swift */,
-				5196CAC02195C515004FB671 /* Search.swift */,
 				5196CAC62195D1DD004FB671 /* CoreDataInterface.swift */,
 				5196CACD2199DBB1004FB671 /* modelConstants.swift */,
+				5196CACF2199F6A3004FB671 /* CouisineDataSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,6 +167,7 @@
 		5196CAC22195D0B3004FB671 /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				5196CAD12199FCCD004FB671 /* CouisinesDataSourceTests */,
 				5196CAC52195D0D5004FB671 /* RestaurantDataSourceTests */,
 			);
 			path = ModelTests;
@@ -185,6 +188,14 @@
 				5196CAC9219988A1004FB671 /* api.swift */,
 			);
 			path = aux;
+			sourceTree = "<group>";
+		};
+		5196CAD12199FCCD004FB671 /* CouisinesDataSourceTests */ = {
+			isa = PBXGroup;
+			children = (
+				5196CAD22199FD0A004FB671 /* CouisineDataSourceToggleFilterTests.swift */,
+			);
+			path = CouisinesDataSourceTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,11 +334,11 @@
 				5196CABB2195B5BB004FB671 /* Restaurant.swift in Sources */,
 				5196CA8F2195A74B004FB671 /* Tomato.xcdatamodeld in Sources */,
 				5196CA892195A74B004FB671 /* ViewController.swift in Sources */,
+				5196CAD02199F6A3004FB671 /* CouisineDataSource.swift in Sources */,
 				5196CACA219988A1004FB671 /* api.swift in Sources */,
 				5196CA872195A74B004FB671 /* AppDelegate.swift in Sources */,
 				5196CAC72195D1DD004FB671 /* CoreDataInterface.swift in Sources */,
-				5196CAC12195C515004FB671 /* Search.swift in Sources */,
-				5196CABF2195C46F004FB671 /* City.swift in Sources */,
+				5196CABF2195C46F004FB671 /* Cuisine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5196CA9F2195A74E004FB671 /* TomatoTests.swift in Sources */,
+				5196CAD32199FD0A004FB671 /* CouisineDataSourceToggleFilterTests.swift in Sources */,
 				5196CACC21998FBD004FB671 /* RestaurantDataSourceFetchFromAPITest.swift in Sources */,
 				5196CAC42195D0C7004FB671 /* RestaurantDataSourceToggleFavourite.swift in Sources */,
 			);
